@@ -1,0 +1,106 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    background: #050816;
+    font-family: system-ui, sans-serif;
+    color: #e5e7eb;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100%;
+}
+
+.sidebar {
+    background: radial-gradient(circle at top, #1a1f35, #050816);
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding: 16px;
+}
+
+h1 { margin: 0; font-size: 18px; }
+h2 { font-size: 13px; color: #9ca3af; margin-top: 6px; }
+
+.badge {
+    margin-top: 10px;
+    background: rgba(99,102,241,0.15);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+}
+
+.badge-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.controls {
+    margin-top: 16px;
+    background: rgba(15,23,42,0.9);
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.controls-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    flex: 1;
+    border-radius: 999px;
+    border: none;
+    padding: 8px;
+    background: linear-gradient(120deg,#6366f1,#8b5cf6);
+    color: white;
+    cursor: pointer;
+}
+
+.btn.secondary {
+    background: rgba(15,23,42,0.8);
+    border: 1px solid rgba(148,163,184,0.4);
+}
+
+.legend {
+    margin-top: 16px;
+    font-size: 12px;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 16px;
+    height: 4px;
+    background: #3b82f6;
+    border-radius: 999px;
+}
+
+.legend-dot.alt { background: #f59e0b; }
+.legend-dot.particle {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+}
+
+.canvas-container {
+    position: relative;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(17,24,39,0.9);
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.tooltip.hidden { display: none; }

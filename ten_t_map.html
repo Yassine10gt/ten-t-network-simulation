@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b35fe6a56dc06c6be9472c5210fb10d6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<!-- BUTTON OBEN MITTE -->
+<div style="
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    text-align: center;
+">
+  <a href="simulation.html" target="_blank"
+     style="
+       background-color: orange;
+       color: black;
+       padding: 10px 22px;
+       border-radius: 10px;
+       text-decoration: none;
+       font-size: 18px;
+       font-weight: bold;
+       box-shadow: 2px 2px 6px rgba(0,0,0,0.35);
+     ">
+     🚀 Simulation starten
+  </a>
+</div>
+
+<!-- LEGENDE UNTEN LINKS -->
+<div style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    padding: 10px 14px;
+    font-size: 12px;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.35);
+">
+    <b>🗺️ Legende</b><br>
+    <span style='display:inline-block;width:14px;height:4px;background:#1E90FF;margin-right:6px;'></span> Schiene (rail)<br>
+    <span style='display:inline-block;width:14px;height:4px;background:#FF8C00;margin-right:6px;'></span> Straße (road)<br>
+    <span style='display:inline-block;width:14px;height:4px;background:#32CD32;margin-right:6px;'></span> Wasser (water)<br>
+    <span style='display:inline-block;width:14px;height:4px;background:#A020F0;margin-right:6px;'></span> Luft (air)<br>
+    <hr style="margin:6px 0;">
+    ⚓ Hafen &nbsp;&nbsp; ✈️ Flughafen &nbsp;&nbsp; 🏙️ Stadt
+</div>
+    
+            <div class="folium-map" id="map_b35fe6a56dc06c6be9472c5210fb10d6" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b35fe6a56dc06c6be9472c5210fb10d6 = L.map(
+                "map_b35fe6a56dc06c6be9472c5210fb10d6",
+                {
+                    center: [50.5, 9.5],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5.3,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_947995ab8215e8304959486b76c2dc5c = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_947995ab8215e8304959486b76c2dc5c.addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var poly_line_c8c4d202b49e9c30d924df501b5c982c = L.polyline(
+                [[53.55, 10.0], [45.44, 12.33]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_c8c4d202b49e9c30d924df501b5c982c.bindTooltip(
+                `<div>
+                     
+    <b>Hamburg → Venedig</b><br>
+    Typ: rail<br>
+    Distanz: 936.63 km<br>
+    Fracht (geschätzt): 916.51 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0d396bfdb727bf269f6aed2f6bd68656 = L.polyline(
+                [[53.55, 10.0], [55.68, 12.57]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_0d396bfdb727bf269f6aed2f6bd68656.bindTooltip(
+                `<div>
+                     
+    <b>Hamburg → Kopenhagen</b><br>
+    Typ: rail<br>
+    Distanz: 370.51 km<br>
+    Fracht (geschätzt): 464.75 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c60dc0d8c5d7883e7230a5a56d8ebe96 = L.polyline(
+                [[52.52, 13.4], [50.85, 4.35]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_c60dc0d8c5d7883e7230a5a56d8ebe96.bindTooltip(
+                `<div>
+                     
+    <b>Berlin → Brüssel</b><br>
+    Typ: air<br>
+    Distanz: 1021.51 km<br>
+    Fracht (geschätzt): 1140.38 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_63d53e6e77eb817399acb460881c1234 = L.polyline(
+                [[48.14, 11.58], [49.61, 6.13]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_63d53e6e77eb817399acb460881c1234.bindTooltip(
+                `<div>
+                     
+    <b>München → Luxemburg</b><br>
+    Typ: road<br>
+    Distanz: 626.57 km<br>
+    Fracht (geschätzt): 572.29 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_20ac5a685eed5cf8221daebdf47636b9 = L.polyline(
+                [[48.14, 11.58], [43.29, 5.37]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_20ac5a685eed5cf8221daebdf47636b9.bindTooltip(
+                `<div>
+                     
+    <b>München → Marseille</b><br>
+    Typ: rail<br>
+    Distanz: 874.63 km<br>
+    Fracht (geschätzt): 1131.45 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d1cfcde5c112895b23b72b6ca90047a7 = L.polyline(
+                [[50.94, 6.96], [50.08, 14.44]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_d1cfcde5c112895b23b72b6ca90047a7.bindTooltip(
+                `<div>
+                     
+    <b>Köln → Prag</b><br>
+    Typ: rail<br>
+    Distanz: 835.75 km<br>
+    Fracht (geschätzt): 731.86 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_136326fe26fc655290838f86a89f4930 = L.polyline(
+                [[50.94, 6.96], [45.07, 7.69]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_136326fe26fc655290838f86a89f4930.bindTooltip(
+                `<div>
+                     
+    <b>Köln → Turin</b><br>
+    Typ: road<br>
+    Distanz: 656.59 km<br>
+    Fracht (geschätzt): 825.59 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8f8d2eb97ce3026dcff59d1568f29ee9 = L.polyline(
+                [[50.11, 8.68], [48.14, 11.58]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_8f8d2eb97ce3026dcff59d1568f29ee9.bindTooltip(
+                `<div>
+                     
+    <b>Frankfurt → München</b><br>
+    Typ: air<br>
+    Distanz: 389.15 km<br>
+    Fracht (geschätzt): 374.43 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b11ae0e06cda362c36afe017cb296087 = L.polyline(
+                [[50.11, 8.68], [47.37, 8.54]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_b11ae0e06cda362c36afe017cb296087.bindTooltip(
+                `<div>
+                     
+    <b>Frankfurt → Zürich</b><br>
+    Typ: water<br>
+    Distanz: 304.54 km<br>
+    Fracht (geschätzt): 339.59 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0e043e72de60d3deb149d35f7d0e0d90 = L.polyline(
+                [[53.08, 8.8], [43.29, 5.37]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_0e043e72de60d3deb149d35f7d0e0d90.bindTooltip(
+                `<div>
+                     
+    <b>Bremen → Marseille</b><br>
+    Typ: rail<br>
+    Distanz: 1151.46 km<br>
+    Fracht (geschätzt): 1000.66 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5c4b7e882f79290c81dd1ef5ff025c6e = L.polyline(
+                [[53.08, 8.8], [47.37, 8.54]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_5c4b7e882f79290c81dd1ef5ff025c6e.bindTooltip(
+                `<div>
+                     
+    <b>Bremen → Zürich</b><br>
+    Typ: rail<br>
+    Distanz: 634.47 km<br>
+    Fracht (geschätzt): 510.57 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8a45bd57fd366feccaa0c788b9a6d77e = L.polyline(
+                [[51.92, 4.48], [49.61, 6.13]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_8a45bd57fd366feccaa0c788b9a6d77e.bindTooltip(
+                `<div>
+                     
+    <b>Rotterdam → Luxemburg</b><br>
+    Typ: road<br>
+    Distanz: 315.1 km<br>
+    Fracht (geschätzt): 304.79 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_152bafe80b8975214abf3f9381b886c4 = L.polyline(
+                [[51.92, 4.48], [51.22, 4.4]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_152bafe80b8975214abf3f9381b886c4.bindTooltip(
+                `<div>
+                     
+    <b>Rotterdam → Antwerpen</b><br>
+    Typ: air<br>
+    Distanz: 78.21 km<br>
+    Fracht (geschätzt): 71.14 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_323170bb9b3e779fe6bae474ec796407 = L.polyline(
+                [[52.37, 4.9], [48.58, 7.75]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_323170bb9b3e779fe6bae474ec796407.bindTooltip(
+                `<div>
+                     
+    <b>Amsterdam → Strasbourg</b><br>
+    Typ: water<br>
+    Distanz: 526.36 km<br>
+    Fracht (geschätzt): 539.79 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e3b6b493d12d9d746a757a8f502656a2 = L.polyline(
+                [[51.44, 5.47], [50.08, 14.44]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_e3b6b493d12d9d746a757a8f502656a2.bindTooltip(
+                `<div>
+                     
+    <b>Eindhoven → Prag</b><br>
+    Typ: air<br>
+    Distanz: 1007.05 km<br>
+    Fracht (geschätzt): 1113.61 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7da428522fda435daacfcf4079b11131 = L.polyline(
+                [[51.44, 5.47], [50.63, 3.06]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_7da428522fda435daacfcf4079b11131.bindTooltip(
+                `<div>
+                     
+    <b>Eindhoven → Lille</b><br>
+    Typ: water<br>
+    Distanz: 282.22 km<br>
+    Fracht (geschätzt): 231.61 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b294e771194567bca57ceb81d72fcc82 = L.polyline(
+                [[51.22, 4.4], [51.92, 4.48]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_b294e771194567bca57ceb81d72fcc82.bindTooltip(
+                `<div>
+                     
+    <b>Antwerpen → Rotterdam</b><br>
+    Typ: water<br>
+    Distanz: 78.21 km<br>
+    Fracht (geschätzt): 83.4 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_25d924c2f9fd0c1b37ec17fcd7baa623 = L.polyline(
+                [[51.22, 4.4], [50.08, 14.44]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_25d924c2f9fd0c1b37ec17fcd7baa623.bindTooltip(
+                `<div>
+                     
+    <b>Antwerpen → Prag</b><br>
+    Typ: rail<br>
+    Distanz: 1121.6 km<br>
+    Fracht (geschätzt): 1450.64 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c9ce4190d4c49baf8e2df66f2791ee19 = L.polyline(
+                [[50.85, 4.35], [48.86, 2.35]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_c9ce4190d4c49baf8e2df66f2791ee19.bindTooltip(
+                `<div>
+                     
+    <b>Brüssel → Paris</b><br>
+    Typ: water<br>
+    Distanz: 313.17 km<br>
+    Fracht (geschätzt): 293.35 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b45060950865bcd9f75b38730b349b9b = L.polyline(
+                [[50.85, 4.35], [53.55, 10.0]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_b45060950865bcd9f75b38730b349b9b.bindTooltip(
+                `<div>
+                     
+    <b>Brüssel → Hamburg</b><br>
+    Typ: road<br>
+    Distanz: 695.08 km<br>
+    Fracht (geschätzt): 706.67 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5abe7e46565e7b935930759d8763165e = L.polyline(
+                [[48.86, 2.35], [48.21, 16.37]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_5abe7e46565e7b935930759d8763165e.bindTooltip(
+                `<div>
+                     
+    <b>Paris → Wien</b><br>
+    Typ: road<br>
+    Distanz: 1557.89 km<br>
+    Fracht (geschätzt): 1548.78 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f057f403088ba43847c3b437907d6032 = L.polyline(
+                [[48.86, 2.35], [48.21, 16.37]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_f057f403088ba43847c3b437907d6032.bindTooltip(
+                `<div>
+                     
+    <b>Paris → Wien</b><br>
+    Typ: road<br>
+    Distanz: 1557.89 km<br>
+    Fracht (geschätzt): 1965.59 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d3bf153af8583222ddf772e97fbcd0b2 = L.polyline(
+                [[50.63, 3.06], [50.85, 4.35]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_d3bf153af8583222ddf772e97fbcd0b2.bindTooltip(
+                `<div>
+                     
+    <b>Lille → Brüssel</b><br>
+    Typ: air<br>
+    Distanz: 145.26 km<br>
+    Fracht (geschätzt): 149.27 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_04eb4a20842dd0f66a236817d1ab289e = L.polyline(
+                [[50.63, 3.06], [50.08, 14.44]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_04eb4a20842dd0f66a236817d1ab289e.bindTooltip(
+                `<div>
+                     
+    <b>Lille → Prag</b><br>
+    Typ: water<br>
+    Distanz: 1264.65 km<br>
+    Fracht (geschätzt): 1012.1 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3cac5d5e647549ae09acd1f11ffc2a58 = L.polyline(
+                [[48.58, 7.75], [49.61, 6.13]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_3cac5d5e647549ae09acd1f11ffc2a58.bindTooltip(
+                `<div>
+                     
+    <b>Strasbourg → Luxemburg</b><br>
+    Typ: air<br>
+    Distanz: 213.09 km<br>
+    Fracht (geschätzt): 195.48 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5d966f98fd272b41ba41f109822716e2 = L.polyline(
+                [[48.58, 7.75], [48.86, 2.35]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_5d966f98fd272b41ba41f109822716e2.bindTooltip(
+                `<div>
+                     
+    <b>Strasbourg → Paris</b><br>
+    Typ: water<br>
+    Distanz: 600.21 km<br>
+    Fracht (geschätzt): 559.67 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ba4900143e0091dfa23849f50227408f = L.polyline(
+                [[47.37, 8.54], [52.37, 4.9]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_ba4900143e0091dfa23849f50227408f.bindTooltip(
+                `<div>
+                     
+    <b>Zürich → Amsterdam</b><br>
+    Typ: road<br>
+    Distanz: 686.49 km<br>
+    Fracht (geschätzt): 765.34 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7dacb699832ef4b987554fd8775a013a = L.polyline(
+                [[47.37, 8.54], [52.52, 13.4]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_7dacb699832ef4b987554fd8775a013a.bindTooltip(
+                `<div>
+                     
+    <b>Zürich → Berlin</b><br>
+    Typ: air<br>
+    Distanz: 786.0 km<br>
+    Fracht (geschätzt): 889.34 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_495d9af7a763c7a105adb37528223c82 = L.polyline(
+                [[47.56, 7.59], [47.07, 15.44]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_495d9af7a763c7a105adb37528223c82.bindTooltip(
+                `<div>
+                     
+    <b>Basel → Graz</b><br>
+    Typ: air<br>
+    Distanz: 873.05 km<br>
+    Fracht (geschätzt): 795.51 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_aa155c77761fe267990512f2baf8b059 = L.polyline(
+                [[47.56, 7.59], [53.55, 10.0]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_aa155c77761fe267990512f2baf8b059.bindTooltip(
+                `<div>
+                     
+    <b>Basel → Hamburg</b><br>
+    Typ: road<br>
+    Distanz: 716.69 km<br>
+    Fracht (geschätzt): 891.17 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0c86081970e13c51208e3c8c5364eeef = L.polyline(
+                [[48.21, 16.37], [48.86, 2.35]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_0c86081970e13c51208e3c8c5364eeef.bindTooltip(
+                `<div>
+                     
+    <b>Wien → Paris</b><br>
+    Typ: road<br>
+    Distanz: 1557.89 km<br>
+    Fracht (geschätzt): 1277.09 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_57803455f29884731f1bf3b54c99b441 = L.polyline(
+                [[48.21, 16.37], [51.44, 5.47]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_57803455f29884731f1bf3b54c99b441.bindTooltip(
+                `<div>
+                     
+    <b>Wien → Eindhoven</b><br>
+    Typ: water<br>
+    Distanz: 1261.9 km<br>
+    Fracht (geschätzt): 1182.71 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3928a5d9520e29aa627dfa0626c90d69 = L.polyline(
+                [[48.31, 14.29], [47.37, 8.54]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_3928a5d9520e29aa627dfa0626c90d69.bindTooltip(
+                `<div>
+                     
+    <b>Linz → Zürich</b><br>
+    Typ: rail<br>
+    Distanz: 646.72 km<br>
+    Fracht (geschätzt): 687.57 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_15f8f6e7ae14827230c10d753a2e5f54 = L.polyline(
+                [[48.31, 14.29], [46.2, 6.15]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_15f8f6e7ae14827230c10d753a2e5f54.bindTooltip(
+                `<div>
+                     
+    <b>Linz → Genf</b><br>
+    Typ: air<br>
+    Distanz: 933.4 km<br>
+    Fracht (geschätzt): 1160.64 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_822d2b63535595989b8ad7356bedd72e = L.polyline(
+                [[47.07, 15.44], [52.52, 13.4]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_822d2b63535595989b8ad7356bedd72e.bindTooltip(
+                `<div>
+                     
+    <b>Graz → Berlin</b><br>
+    Typ: water<br>
+    Distanz: 645.94 km<br>
+    Fracht (geschätzt): 539.05 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1e7bc293f2414186250fb59850a61f21 = L.polyline(
+                [[47.07, 15.44], [49.61, 6.13]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_1e7bc293f2414186250fb59850a61f21.bindTooltip(
+                `<div>
+                     
+    <b>Graz → Luxemburg</b><br>
+    Typ: air<br>
+    Distanz: 1071.18 km<br>
+    Fracht (geschätzt): 1122.13 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_dea50021688b8fe77224335b3751acc0 = L.polyline(
+                [[49.61, 6.13], [48.21, 16.37]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_dea50021688b8fe77224335b3751acc0.bindTooltip(
+                `<div>
+                     
+    <b>Luxemburg → Wien</b><br>
+    Typ: air<br>
+    Distanz: 1147.21 km<br>
+    Fracht (geschätzt): 1150.16 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_eebc4bcc10d24103581577bfd21e5466 = L.polyline(
+                [[49.61, 6.13], [48.58, 7.75]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_eebc4bcc10d24103581577bfd21e5466.bindTooltip(
+                `<div>
+                     
+    <b>Luxemburg → Strasbourg</b><br>
+    Typ: rail<br>
+    Distanz: 213.09 km<br>
+    Fracht (geschätzt): 221.76 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3d9289ce3faf3f8bf29341e153d4a960 = L.polyline(
+                [[50.08, 14.44], [48.58, 7.75]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_3d9289ce3faf3f8bf29341e153d4a960.bindTooltip(
+                `<div>
+                     
+    <b>Prag → Strasbourg</b><br>
+    Typ: road<br>
+    Distanz: 761.03 km<br>
+    Fracht (geschätzt): 889.97 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f5b86e15619658de29248c0da5af0e13 = L.polyline(
+                [[50.08, 14.44], [51.92, 4.48]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_f5b86e15619658de29248c0da5af0e13.bindTooltip(
+                `<div>
+                     
+    <b>Prag → Rotterdam</b><br>
+    Typ: air<br>
+    Distanz: 1124.27 km<br>
+    Fracht (geschätzt): 1213.96 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_23a532c992b544338717fcaa08eab9e3 = L.polyline(
+                [[55.68, 12.57], [48.14, 11.58]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_23a532c992b544338717fcaa08eab9e3.bindTooltip(
+                `<div>
+                     
+    <b>Kopenhagen → München</b><br>
+    Typ: rail<br>
+    Distanz: 844.12 km<br>
+    Fracht (geschätzt): 808.14 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_77bbe756489bd88d724555b5ae45a7cb = L.polyline(
+                [[55.68, 12.57], [41.9, 12.5]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_77bbe756489bd88d724555b5ae45a7cb.bindTooltip(
+                `<div>
+                     
+    <b>Kopenhagen → Rom</b><br>
+    Typ: air<br>
+    Distanz: 1529.6 km<br>
+    Fracht (geschätzt): 1986.52 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_76ce908236527cbe70baf7effffc053e = L.polyline(
+                [[59.91, 10.75], [50.11, 8.68]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_76ce908236527cbe70baf7effffc053e.bindTooltip(
+                `<div>
+                     
+    <b>Oslo → Frankfurt</b><br>
+    Typ: road<br>
+    Distanz: 1111.8 km<br>
+    Fracht (geschätzt): 1388.2 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_23e56b46443e7c7dc38b01cb084a913f = L.polyline(
+                [[59.91, 10.75], [53.55, 10.0]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_23e56b46443e7c7dc38b01cb084a913f.bindTooltip(
+                `<div>
+                     
+    <b>Oslo → Hamburg</b><br>
+    Typ: road<br>
+    Distanz: 710.85 km<br>
+    Fracht (geschätzt): 650.24 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_73661ec8e3711f3b46ca59e23be37ea2 = L.polyline(
+                [[45.46, 9.19], [45.44, 12.33]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_73661ec8e3711f3b46ca59e23be37ea2.bindTooltip(
+                `<div>
+                     
+    <b>Mailand → Venedig</b><br>
+    Typ: water<br>
+    Distanz: 348.55 km<br>
+    Fracht (geschätzt): 414.98 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8a00ab001b8abf34f8cf55d48b590ed7 = L.polyline(
+                [[45.46, 9.19], [50.08, 14.44]],
+                {"bubblingMouseEvents": true, "color": "#A020F0", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#A020F0", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_8a00ab001b8abf34f8cf55d48b590ed7.bindTooltip(
+                `<div>
+                     
+    <b>Mailand → Prag</b><br>
+    Typ: air<br>
+    Distanz: 776.26 km<br>
+    Fracht (geschätzt): 836.55 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9e43a0f72fc8f88782bb66742959d33a = L.polyline(
+                [[41.9, 12.5], [50.63, 3.06]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_9e43a0f72fc8f88782bb66742959d33a.bindTooltip(
+                `<div>
+                     
+    <b>Rom → Lille</b><br>
+    Typ: water<br>
+    Distanz: 1427.23 km<br>
+    Fracht (geschätzt): 1540.18 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a2aa4e816cd420071394d0ef90f6134c = L.polyline(
+                [[45.07, 7.69], [45.46, 9.19]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_a2aa4e816cd420071394d0ef90f6134c.bindTooltip(
+                `<div>
+                     
+    <b>Turin → Mailand</b><br>
+    Typ: road<br>
+    Distanz: 172.04 km<br>
+    Fracht (geschätzt): 206.42 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_383121e70f4df5cbd1b29c68dbd87c2b = L.polyline(
+                [[45.07, 7.69], [55.68, 12.57]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_383121e70f4df5cbd1b29c68dbd87c2b.bindTooltip(
+                `<div>
+                     
+    <b>Turin → Kopenhagen</b><br>
+    Typ: road<br>
+    Distanz: 1296.31 km<br>
+    Fracht (geschätzt): 1655.21 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d0d4f5a9a42cfb3d88148929969bb6b1 = L.polyline(
+                [[45.44, 12.33], [47.07, 15.44]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_d0d4f5a9a42cfb3d88148929969bb6b1.bindTooltip(
+                `<div>
+                     
+    <b>Venedig → Graz</b><br>
+    Typ: road<br>
+    Distanz: 389.75 km<br>
+    Fracht (geschätzt): 329.74 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_34f07970fe2bbe0b4ef7ab82a1123f25 = L.polyline(
+                [[43.29, 5.37], [49.61, 6.13]],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF8C00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_34f07970fe2bbe0b4ef7ab82a1123f25.bindTooltip(
+                `<div>
+                     
+    <b>Marseille → Luxemburg</b><br>
+    Typ: road<br>
+    Distanz: 706.57 km<br>
+    Fracht (geschätzt): 661.7 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_48964781c80fc032a83fe7b0fdb17b5c = L.polyline(
+                [[43.29, 5.37], [51.92, 4.48]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_48964781c80fc032a83fe7b0fdb17b5c.bindTooltip(
+                `<div>
+                     
+    <b>Marseille → Rotterdam</b><br>
+    Typ: water<br>
+    Distanz: 963.01 km<br>
+    Fracht (geschätzt): 891.24 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_fbc10ebd787a0aa907e3977304138e44 = L.polyline(
+                [[46.2, 6.15], [45.44, 12.33]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_fbc10ebd787a0aa907e3977304138e44.bindTooltip(
+                `<div>
+                     
+    <b>Genf → Venedig</b><br>
+    Typ: water<br>
+    Distanz: 691.15 km<br>
+    Fracht (geschätzt): 859.54 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e105198a099585cd23ec4f006f9f467c = L.polyline(
+                [[46.2, 6.15], [59.91, 10.75]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_e105198a099585cd23ec4f006f9f467c.bindTooltip(
+                `<div>
+                     
+    <b>Genf → Oslo</b><br>
+    Typ: water<br>
+    Distanz: 1605.18 km<br>
+    Fracht (geschätzt): 1871.14 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_15d12bed05732a20c04c333fd64910f7 = L.polyline(
+                [[51.22, 6.77], [46.2, 6.15]],
+                {"bubblingMouseEvents": true, "color": "#32CD32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#32CD32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_15d12bed05732a20c04c333fd64910f7.bindTooltip(
+                `<div>
+                     
+    <b>Düsseldorf → Genf</b><br>
+    Typ: water<br>
+    Distanz: 561.45 km<br>
+    Fracht (geschätzt): 624.76 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7539d8cd0ada86b1397e71a10723288d = L.polyline(
+                [[51.22, 6.77], [50.63, 3.06]],
+                {"bubblingMouseEvents": true, "color": "#1E90FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1E90FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            poly_line_7539d8cd0ada86b1397e71a10723288d.bindTooltip(
+                `<div>
+                     
+    <b>Düsseldorf → Lille</b><br>
+    Typ: rail<br>
+    Distanz: 416.98 km<br>
+    Fracht (geschätzt): 335.23 t/Jahr
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_71319dced76ba7bdc9eeeb5ac7ddce7d = L.marker(
+                [53.55, 10.0],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_8a583fee40ea1e4f63fa761a917cce42 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2693\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_065b293ba9314f9c2c8daa15c797b11f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d0bb5781eb3bde98c70247c20e0e5560 = $(`<div id="html_d0bb5781eb3bde98c70247c20e0e5560" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>⚓ Hamburg</b><br>         🌍 Land: DE<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: ≈ 1.8 Mio<br>         📦 Güter In: 15.20 Mio t/Jahr<br>         📤 Güter Out: 13.30 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 37.05 Mio t/Jahr</div></div>`)[0];
+                popup_065b293ba9314f9c2c8daa15c797b11f.setContent(html_d0bb5781eb3bde98c70247c20e0e5560);
+            
+        
+
+        marker_71319dced76ba7bdc9eeeb5ac7ddce7d.bindPopup(popup_065b293ba9314f9c2c8daa15c797b11f)
+        ;
+
+        
+    
+    
+            marker_71319dced76ba7bdc9eeeb5ac7ddce7d.bindTooltip(
+                `<div>
+                     ⚓ Hamburg (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_71319dced76ba7bdc9eeeb5ac7ddce7d.setIcon(div_icon_8a583fee40ea1e4f63fa761a917cce42);
+            
+    
+            var marker_e4e80bcfd14211a0832b0db26e0a47c4 = L.marker(
+                [52.52, 13.4],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_64d7df468478ba62e8c6d953366f3302 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_e1aa1413d2d01af1c840bd8313162b4e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_237426a0c4e1a969dd38ca953e04dabd = $(`<div id="html_237426a0c4e1a969dd38ca953e04dabd" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Berlin</b><br>         🌍 Land: DE<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 3.6 Mio<br>         📦 Güter In: 18.10 Mio t/Jahr<br>         📤 Güter Out: 17.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 52.65 Mio t/Jahr</div></div>`)[0];
+                popup_e1aa1413d2d01af1c840bd8313162b4e.setContent(html_237426a0c4e1a969dd38ca953e04dabd);
+            
+        
+
+        marker_e4e80bcfd14211a0832b0db26e0a47c4.bindPopup(popup_e1aa1413d2d01af1c840bd8313162b4e)
+        ;
+
+        
+    
+    
+            marker_e4e80bcfd14211a0832b0db26e0a47c4.bindTooltip(
+                `<div>
+                     ✈️ Berlin (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e4e80bcfd14211a0832b0db26e0a47c4.setIcon(div_icon_64d7df468478ba62e8c6d953366f3302);
+            
+    
+            var marker_41aba1abe1076cf9c5ab7e416ef06103 = L.marker(
+                [48.14, 11.58],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_4417fd325508da64b2331a1beb12419f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_1667725e05975c13807c1ec240feb90d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3e71a7423bbad0920107e0552f2816e8 = $(`<div id="html_3e71a7423bbad0920107e0552f2816e8" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ München</b><br>         🌍 Land: DE<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 1.6 Mio<br>         📦 Güter In: 12.50 Mio t/Jahr<br>         📤 Güter Out: 11.20 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 35.55 Mio t/Jahr</div></div>`)[0];
+                popup_1667725e05975c13807c1ec240feb90d.setContent(html_3e71a7423bbad0920107e0552f2816e8);
+            
+        
+
+        marker_41aba1abe1076cf9c5ab7e416ef06103.bindPopup(popup_1667725e05975c13807c1ec240feb90d)
+        ;
+
+        
+    
+    
+            marker_41aba1abe1076cf9c5ab7e416ef06103.bindTooltip(
+                `<div>
+                     ✈️ München (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_41aba1abe1076cf9c5ab7e416ef06103.setIcon(div_icon_4417fd325508da64b2331a1beb12419f);
+            
+    
+            var marker_b0f2722d85b0f806a1c5a934b886b9f6 = L.marker(
+                [50.94, 6.96],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_aa331f48ba345bf5f08184e2e057544f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \ud83c\udfd9\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_052bd45dc2b12c887bf0fb5354d31f37 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1dcc35e9e092a7f54692e7f6f30d4f93 = $(`<div id="html_1dcc35e9e092a7f54692e7f6f30d4f93" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>🏙️ Köln</b><br>         🌍 Land: DE<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 1.1 Mio<br>         📦 Güter In: 9.50 Mio t/Jahr<br>         📤 Güter Out: 8.20 Mio t/Jahr     </div></div>`)[0];
+                popup_052bd45dc2b12c887bf0fb5354d31f37.setContent(html_1dcc35e9e092a7f54692e7f6f30d4f93);
+            
+        
+
+        marker_b0f2722d85b0f806a1c5a934b886b9f6.bindPopup(popup_052bd45dc2b12c887bf0fb5354d31f37)
+        ;
+
+        
+    
+    
+            marker_b0f2722d85b0f806a1c5a934b886b9f6.bindTooltip(
+                `<div>
+                     🏙️ Köln (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b0f2722d85b0f806a1c5a934b886b9f6.setIcon(div_icon_aa331f48ba345bf5f08184e2e057544f);
+            
+    
+            var marker_8f8db029a1e17ff2049b6d09bd1c1856 = L.marker(
+                [50.11, 8.68],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_2b3708d06a51bc1975672033b81fa678 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_22b3e89c49abc9d29cc5f73e8352c136 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8a8286752467ef6f5208276d78bcfd25 = $(`<div id="html_8a8286752467ef6f5208276d78bcfd25" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Frankfurt</b><br>         🌍 Land: DE<br>         🏙️ Typ: Flughafen<br>         👥 Einwohner: 750.000<br>         📦 Güter In: 20.00 Mio t/Jahr<br>         📤 Güter Out: 19.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 58.50 Mio t/Jahr</div></div>`)[0];
+                popup_22b3e89c49abc9d29cc5f73e8352c136.setContent(html_8a8286752467ef6f5208276d78bcfd25);
+            
+        
+
+        marker_8f8db029a1e17ff2049b6d09bd1c1856.bindPopup(popup_22b3e89c49abc9d29cc5f73e8352c136)
+        ;
+
+        
+    
+    
+            marker_8f8db029a1e17ff2049b6d09bd1c1856.bindTooltip(
+                `<div>
+                     ✈️ Frankfurt (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f8db029a1e17ff2049b6d09bd1c1856.setIcon(div_icon_2b3708d06a51bc1975672033b81fa678);
+            
+    
+            var marker_e14316ae49100cc256709b717c73098e = L.marker(
+                [53.08, 8.8],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_4cd1d080e9b30b0cee694219dbf3f742 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2693\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_40bc9871bdd2b5d55edab76f845a5620 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ca7a74bdfdece2dbd02aa51b5af099bd = $(`<div id="html_ca7a74bdfdece2dbd02aa51b5af099bd" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>⚓ Bremen</b><br>         🌍 Land: DE<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 680.000<br>         📦 Güter In: 8.00 Mio t/Jahr<br>         📤 Güter Out: 7.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 19.50 Mio t/Jahr</div></div>`)[0];
+                popup_40bc9871bdd2b5d55edab76f845a5620.setContent(html_ca7a74bdfdece2dbd02aa51b5af099bd);
+            
+        
+
+        marker_e14316ae49100cc256709b717c73098e.bindPopup(popup_40bc9871bdd2b5d55edab76f845a5620)
+        ;
+
+        
+    
+    
+            marker_e14316ae49100cc256709b717c73098e.bindTooltip(
+                `<div>
+                     ⚓ Bremen (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e14316ae49100cc256709b717c73098e.setIcon(div_icon_4cd1d080e9b30b0cee694219dbf3f742);
+            
+    
+            var marker_c61cc6cbd4cb0c15445ba61b2e6d9b70 = L.marker(
+                [51.92, 4.48],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_3b8d5e923b1728a3e7d8af346df4007e = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_3e7a648f61acef430bee83baa36317bf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6db18f56d428f39d0bbfa4424fa7f9ab = $(`<div id="html_6db18f56d428f39d0bbfa4424fa7f9ab" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Rotterdam</b><br>         🌍 Land: NL<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 650.000<br>         📦 Güter In: 25.00 Mio t/Jahr<br>         📤 Güter Out: 23.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 62.40 Mio t/Jahr</div></div>`)[0];
+                popup_3e7a648f61acef430bee83baa36317bf.setContent(html_6db18f56d428f39d0bbfa4424fa7f9ab);
+            
+        
+
+        marker_c61cc6cbd4cb0c15445ba61b2e6d9b70.bindPopup(popup_3e7a648f61acef430bee83baa36317bf)
+        ;
+
+        
+    
+    
+            marker_c61cc6cbd4cb0c15445ba61b2e6d9b70.bindTooltip(
+                `<div>
+                     ✈️ Rotterdam (NL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c61cc6cbd4cb0c15445ba61b2e6d9b70.setIcon(div_icon_3b8d5e923b1728a3e7d8af346df4007e);
+            
+    
+            var marker_1d19caed623b62b9ea90d098df1da79c = L.marker(
+                [52.37, 4.9],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_5899f5b8f16ce05ba4d7c0bdbbdbd23b = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \ud83c\udfd9\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_d9162e70b5ac71490979ef8ced3b9c03 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_037d68c1feb455b40a64fbc446bb72f4 = $(`<div id="html_037d68c1feb455b40a64fbc446bb72f4" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>🏙️ Amsterdam</b><br>         🌍 Land: NL<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 870.000<br>         📦 Güter In: 10.50 Mio t/Jahr<br>         📤 Güter Out: 9.80 Mio t/Jahr     </div></div>`)[0];
+                popup_d9162e70b5ac71490979ef8ced3b9c03.setContent(html_037d68c1feb455b40a64fbc446bb72f4);
+            
+        
+
+        marker_1d19caed623b62b9ea90d098df1da79c.bindPopup(popup_d9162e70b5ac71490979ef8ced3b9c03)
+        ;
+
+        
+    
+    
+            marker_1d19caed623b62b9ea90d098df1da79c.bindTooltip(
+                `<div>
+                     🏙️ Amsterdam (NL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1d19caed623b62b9ea90d098df1da79c.setIcon(div_icon_5899f5b8f16ce05ba4d7c0bdbbdbd23b);
+            
+    
+            var marker_627b0193df581eb9589312516596dc3b = L.marker(
+                [51.44, 5.47],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_754f9d034081ad692137aa3e2237718d = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_749e3d591f8dbce9be3969d89613c533 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_51f31b4794f2d9a9529cc9c1dd46d708 = $(`<div id="html_51f31b4794f2d9a9529cc9c1dd46d708" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Eindhoven</b><br>         🌍 Land: NL<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 240.000<br>         📦 Güter In: 7.10 Mio t/Jahr<br>         📤 Güter Out: 6.30 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 20.10 Mio t/Jahr</div></div>`)[0];
+                popup_749e3d591f8dbce9be3969d89613c533.setContent(html_51f31b4794f2d9a9529cc9c1dd46d708);
+            
+        
+
+        marker_627b0193df581eb9589312516596dc3b.bindPopup(popup_749e3d591f8dbce9be3969d89613c533)
+        ;
+
+        
+    
+    
+            marker_627b0193df581eb9589312516596dc3b.bindTooltip(
+                `<div>
+                     ✈️ Eindhoven (NL)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_627b0193df581eb9589312516596dc3b.setIcon(div_icon_754f9d034081ad692137aa3e2237718d);
+            
+    
+            var marker_f44c143e07893878224b25cf5d2e761d = L.marker(
+                [51.22, 4.4],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_58af93f2be27e0c9d7e7f95a310914f8 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_ae30a223f0eec7804c8881271e039092 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_68b55fb81b30658f3ecb17d7c33b0227 = $(`<div id="html_68b55fb81b30658f3ecb17d7c33b0227" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Antwerpen</b><br>         🌍 Land: BE<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 520.000<br>         📦 Güter In: 18.30 Mio t/Jahr<br>         📤 Güter Out: 17.10 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 46.02 Mio t/Jahr</div></div>`)[0];
+                popup_ae30a223f0eec7804c8881271e039092.setContent(html_68b55fb81b30658f3ecb17d7c33b0227);
+            
+        
+
+        marker_f44c143e07893878224b25cf5d2e761d.bindPopup(popup_ae30a223f0eec7804c8881271e039092)
+        ;
+
+        
+    
+    
+            marker_f44c143e07893878224b25cf5d2e761d.bindTooltip(
+                `<div>
+                     ✈️ Antwerpen (BE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f44c143e07893878224b25cf5d2e761d.setIcon(div_icon_58af93f2be27e0c9d7e7f95a310914f8);
+            
+    
+            var marker_c6a841869048b2556ac46af59bdd3622 = L.marker(
+                [50.85, 4.35],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_e370efb1fee17395f5c958e891183dde = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_2b628cbb1bff2316578c1d3db4159330 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_274859b4708edb4cad585e0a17c7c0fe = $(`<div id="html_274859b4708edb4cad585e0a17c7c0fe" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Brüssel</b><br>         🌍 Land: BE<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 1.8 Mio<br>         📦 Güter In: 11.00 Mio t/Jahr<br>         📤 Güter Out: 10.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 31.50 Mio t/Jahr</div></div>`)[0];
+                popup_2b628cbb1bff2316578c1d3db4159330.setContent(html_274859b4708edb4cad585e0a17c7c0fe);
+            
+        
+
+        marker_c6a841869048b2556ac46af59bdd3622.bindPopup(popup_2b628cbb1bff2316578c1d3db4159330)
+        ;
+
+        
+    
+    
+            marker_c6a841869048b2556ac46af59bdd3622.bindTooltip(
+                `<div>
+                     ✈️ Brüssel (BE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c6a841869048b2556ac46af59bdd3622.setIcon(div_icon_e370efb1fee17395f5c958e891183dde);
+            
+    
+            var marker_78d256554a21470713b724ef128eacff = L.marker(
+                [48.86, 2.35],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_2c4e84b4b9eb4c51209973d316f8e0b7 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \ud83c\udfd9\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_2e99dcc088ff8573f704499866643394 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4fb6ad55739b42c0eb895301cfd01e19 = $(`<div id="html_4fb6ad55739b42c0eb895301cfd01e19" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>🏙️ Paris</b><br>         🌍 Land: FR<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 2.1 Mio<br>         📦 Güter In: 22.00 Mio t/Jahr<br>         📤 Güter Out: 21.00 Mio t/Jahr     </div></div>`)[0];
+                popup_2e99dcc088ff8573f704499866643394.setContent(html_4fb6ad55739b42c0eb895301cfd01e19);
+            
+        
+
+        marker_78d256554a21470713b724ef128eacff.bindPopup(popup_2e99dcc088ff8573f704499866643394)
+        ;
+
+        
+    
+    
+            marker_78d256554a21470713b724ef128eacff.bindTooltip(
+                `<div>
+                     🏙️ Paris (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_78d256554a21470713b724ef128eacff.setIcon(div_icon_2c4e84b4b9eb4c51209973d316f8e0b7);
+            
+    
+            var marker_a5f4eb6fa567e31bcb2aeb6a3634562c = L.marker(
+                [50.63, 3.06],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_88b7beeb776467d8e82b36fc4225b2fc = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_32ef59c0ad7456f52b999523f36320fa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2f83045887e445c08977a91221839578 = $(`<div id="html_2f83045887e445c08977a91221839578" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Lille</b><br>         🌍 Land: FR<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 230.000<br>         📦 Güter In: 6.20 Mio t/Jahr<br>         📤 Güter Out: 5.40 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 17.40 Mio t/Jahr</div></div>`)[0];
+                popup_32ef59c0ad7456f52b999523f36320fa.setContent(html_2f83045887e445c08977a91221839578);
+            
+        
+
+        marker_a5f4eb6fa567e31bcb2aeb6a3634562c.bindPopup(popup_32ef59c0ad7456f52b999523f36320fa)
+        ;
+
+        
+    
+    
+            marker_a5f4eb6fa567e31bcb2aeb6a3634562c.bindTooltip(
+                `<div>
+                     ✈️ Lille (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5f4eb6fa567e31bcb2aeb6a3634562c.setIcon(div_icon_88b7beeb776467d8e82b36fc4225b2fc);
+            
+    
+            var marker_927fe0fa7d8d09c4e5cee017a621fe00 = L.marker(
+                [48.58, 7.75],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_54c11ce040635b9db64e963d1bc92c4f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_eb1220472c32196609128220f44ed9b5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c1a304ccc6cb4657d934da0931c61ad9 = $(`<div id="html_c1a304ccc6cb4657d934da0931c61ad9" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Strasbourg</b><br>         🌍 Land: FR<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 280.000<br>         📦 Güter In: 6.80 Mio t/Jahr<br>         📤 Güter Out: 6.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 19.20 Mio t/Jahr</div></div>`)[0];
+                popup_eb1220472c32196609128220f44ed9b5.setContent(html_c1a304ccc6cb4657d934da0931c61ad9);
+            
+        
+
+        marker_927fe0fa7d8d09c4e5cee017a621fe00.bindPopup(popup_eb1220472c32196609128220f44ed9b5)
+        ;
+
+        
+    
+    
+            marker_927fe0fa7d8d09c4e5cee017a621fe00.bindTooltip(
+                `<div>
+                     ✈️ Strasbourg (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_927fe0fa7d8d09c4e5cee017a621fe00.setIcon(div_icon_54c11ce040635b9db64e963d1bc92c4f);
+            
+    
+            var marker_971e2b92abb8991d6c7f9bdd6b9fc60f = L.marker(
+                [47.37, 8.54],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_efe1b5bfa48e90cd877b9482089d505a = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_a223aef0a1964055ffcc1eb70738a43b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7a921641a9817b4b4ad8002b239f3850 = $(`<div id="html_7a921641a9817b4b4ad8002b239f3850" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Zürich</b><br>         🌍 Land: CH<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 400.000<br>         📦 Güter In: 7.50 Mio t/Jahr<br>         📤 Güter Out: 6.80 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 21.45 Mio t/Jahr</div></div>`)[0];
+                popup_a223aef0a1964055ffcc1eb70738a43b.setContent(html_7a921641a9817b4b4ad8002b239f3850);
+            
+        
+
+        marker_971e2b92abb8991d6c7f9bdd6b9fc60f.bindPopup(popup_a223aef0a1964055ffcc1eb70738a43b)
+        ;
+
+        
+    
+    
+            marker_971e2b92abb8991d6c7f9bdd6b9fc60f.bindTooltip(
+                `<div>
+                     ✈️ Zürich (CH)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_971e2b92abb8991d6c7f9bdd6b9fc60f.setIcon(div_icon_efe1b5bfa48e90cd877b9482089d505a);
+            
+    
+            var marker_4d7efbc4a1dd5bb253c9bf02fe6e0ebe = L.marker(
+                [47.56, 7.59],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_5acdc9552e98de8cd09b822771c5385f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_ae259982541b24927108f39df295c067 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a58781f4becffa424635cc7553cb7f2a = $(`<div id="html_a58781f4becffa424635cc7553cb7f2a" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Basel</b><br>         🌍 Land: CH<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 170.000<br>         📦 Güter In: 5.20 Mio t/Jahr<br>         📤 Güter Out: 4.60 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 12.74 Mio t/Jahr</div></div>`)[0];
+                popup_ae259982541b24927108f39df295c067.setContent(html_a58781f4becffa424635cc7553cb7f2a);
+            
+        
+
+        marker_4d7efbc4a1dd5bb253c9bf02fe6e0ebe.bindPopup(popup_ae259982541b24927108f39df295c067)
+        ;
+
+        
+    
+    
+            marker_4d7efbc4a1dd5bb253c9bf02fe6e0ebe.bindTooltip(
+                `<div>
+                     ✈️ Basel (CH)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4d7efbc4a1dd5bb253c9bf02fe6e0ebe.setIcon(div_icon_5acdc9552e98de8cd09b822771c5385f);
+            
+    
+            var marker_15e5d8264acd24fcf26388cf4536284a = L.marker(
+                [48.21, 16.37],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_10b5ab9bdcb23f06fd71669ce92b3ebd = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_244d079dc5edfd1e936ffc94e39589c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_10b68228f1dec4b3a09620311775f7b0 = $(`<div id="html_10b68228f1dec4b3a09620311775f7b0" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Wien</b><br>         🌍 Land: AT<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 1.9 Mio<br>         📦 Güter In: 14.30 Mio t/Jahr<br>         📤 Güter Out: 13.50 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 41.70 Mio t/Jahr</div></div>`)[0];
+                popup_244d079dc5edfd1e936ffc94e39589c6.setContent(html_10b68228f1dec4b3a09620311775f7b0);
+            
+        
+
+        marker_15e5d8264acd24fcf26388cf4536284a.bindPopup(popup_244d079dc5edfd1e936ffc94e39589c6)
+        ;
+
+        
+    
+    
+            marker_15e5d8264acd24fcf26388cf4536284a.bindTooltip(
+                `<div>
+                     ✈️ Wien (AT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_15e5d8264acd24fcf26388cf4536284a.setIcon(div_icon_10b5ab9bdcb23f06fd71669ce92b3ebd);
+            
+    
+            var marker_7a801263afc9ee3b3a3d57234e5ab49a = L.marker(
+                [48.31, 14.29],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_f5cfd8f97d4d7c7ea4459a8c69ca3080 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_ae05f4e2152827db5081e29102367b8c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d20b87219a8cd6ba3e7f25568bd124d3 = $(`<div id="html_d20b87219a8cd6ba3e7f25568bd124d3" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Linz</b><br>         🌍 Land: AT<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 200.000<br>         📦 Güter In: 4.80 Mio t/Jahr<br>         📤 Güter Out: 4.10 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 13.35 Mio t/Jahr</div></div>`)[0];
+                popup_ae05f4e2152827db5081e29102367b8c.setContent(html_d20b87219a8cd6ba3e7f25568bd124d3);
+            
+        
+
+        marker_7a801263afc9ee3b3a3d57234e5ab49a.bindPopup(popup_ae05f4e2152827db5081e29102367b8c)
+        ;
+
+        
+    
+    
+            marker_7a801263afc9ee3b3a3d57234e5ab49a.bindTooltip(
+                `<div>
+                     ✈️ Linz (AT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7a801263afc9ee3b3a3d57234e5ab49a.setIcon(div_icon_f5cfd8f97d4d7c7ea4459a8c69ca3080);
+            
+    
+            var marker_d635c5682e72e79be5eefead60b238f2 = L.marker(
+                [47.07, 15.44],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_89e9c842ccaa052a8ec46ef95d46c918 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_30c0c3db7108a2a4707852d4b9e14806 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af325104000b6ac96216caa8060e0872 = $(`<div id="html_af325104000b6ac96216caa8060e0872" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Graz</b><br>         🌍 Land: AT<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 300.000<br>         📦 Güter In: 5.30 Mio t/Jahr<br>         📤 Güter Out: 4.70 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 15.00 Mio t/Jahr</div></div>`)[0];
+                popup_30c0c3db7108a2a4707852d4b9e14806.setContent(html_af325104000b6ac96216caa8060e0872);
+            
+        
+
+        marker_d635c5682e72e79be5eefead60b238f2.bindPopup(popup_30c0c3db7108a2a4707852d4b9e14806)
+        ;
+
+        
+    
+    
+            marker_d635c5682e72e79be5eefead60b238f2.bindTooltip(
+                `<div>
+                     ✈️ Graz (AT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d635c5682e72e79be5eefead60b238f2.setIcon(div_icon_89e9c842ccaa052a8ec46ef95d46c918);
+            
+    
+            var marker_a0e5723a7a9d7145f69bfe5d33c4d7b1 = L.marker(
+                [49.61, 6.13],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_3d469f514a36e5380d0e33e7a534466f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_59bef954098b6fe173623d9c3eaf46ba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_64547d6e9a1548eaaf93765dea24bff3 = $(`<div id="html_64547d6e9a1548eaaf93765dea24bff3" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Luxemburg</b><br>         🌍 Land: LU<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 125.000<br>         📦 Güter In: 3.50 Mio t/Jahr<br>         📤 Güter Out: 3.20 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 10.05 Mio t/Jahr</div></div>`)[0];
+                popup_59bef954098b6fe173623d9c3eaf46ba.setContent(html_64547d6e9a1548eaaf93765dea24bff3);
+            
+        
+
+        marker_a0e5723a7a9d7145f69bfe5d33c4d7b1.bindPopup(popup_59bef954098b6fe173623d9c3eaf46ba)
+        ;
+
+        
+    
+    
+            marker_a0e5723a7a9d7145f69bfe5d33c4d7b1.bindTooltip(
+                `<div>
+                     ✈️ Luxemburg (LU)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a0e5723a7a9d7145f69bfe5d33c4d7b1.setIcon(div_icon_3d469f514a36e5380d0e33e7a534466f);
+            
+    
+            var marker_209fa1c665c64ffba2aee6cfd17c7516 = L.marker(
+                [50.08, 14.44],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_5a067c3a14d6a90daeff94898c5ea423 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_16a13d795106daba742c25239d21bf27 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_34d3718e68852c01f09e4672213afe29 = $(`<div id="html_34d3718e68852c01f09e4672213afe29" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Prag</b><br>         🌍 Land: CZ<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 1.3 Mio<br>         📦 Güter In: 8.90 Mio t/Jahr<br>         📤 Güter Out: 8.00 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 25.35 Mio t/Jahr</div></div>`)[0];
+                popup_16a13d795106daba742c25239d21bf27.setContent(html_34d3718e68852c01f09e4672213afe29);
+            
+        
+
+        marker_209fa1c665c64ffba2aee6cfd17c7516.bindPopup(popup_16a13d795106daba742c25239d21bf27)
+        ;
+
+        
+    
+    
+            marker_209fa1c665c64ffba2aee6cfd17c7516.bindTooltip(
+                `<div>
+                     ✈️ Prag (CZ)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_209fa1c665c64ffba2aee6cfd17c7516.setIcon(div_icon_5a067c3a14d6a90daeff94898c5ea423);
+            
+    
+            var marker_779fb473181cbf69e77d3d30b831eb8c = L.marker(
+                [55.68, 12.57],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_ba1d5121cff0b71735a9719be2a4f241 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_4e28597c14e5a6ab6868d7aef9e87ce9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_236dfb3e2a1d41af44290f192fd6ad01 = $(`<div id="html_236dfb3e2a1d41af44290f192fd6ad01" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Kopenhagen</b><br>         🌍 Land: DK<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 800.000<br>         📦 Güter In: 7.10 Mio t/Jahr<br>         📤 Güter Out: 6.90 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 21.00 Mio t/Jahr</div></div>`)[0];
+                popup_4e28597c14e5a6ab6868d7aef9e87ce9.setContent(html_236dfb3e2a1d41af44290f192fd6ad01);
+            
+        
+
+        marker_779fb473181cbf69e77d3d30b831eb8c.bindPopup(popup_4e28597c14e5a6ab6868d7aef9e87ce9)
+        ;
+
+        
+    
+    
+            marker_779fb473181cbf69e77d3d30b831eb8c.bindTooltip(
+                `<div>
+                     ✈️ Kopenhagen (DK)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_779fb473181cbf69e77d3d30b831eb8c.setIcon(div_icon_ba1d5121cff0b71735a9719be2a4f241);
+            
+    
+            var marker_e549e22f0f222e85326a25c525907ef2 = L.marker(
+                [59.91, 10.75],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_a0b65c28851b0043f2a8320ec0384f2b = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2693\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_54cdcaacef4ac34a54faacf46b787008 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1755d86835a7f9190c533e20b774cacb = $(`<div id="html_1755d86835a7f9190c533e20b774cacb" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>⚓ Oslo</b><br>         🌍 Land: NO<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 700.000<br>         📦 Güter In: 4.50 Mio t/Jahr<br>         📤 Güter Out: 4.10 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 11.18 Mio t/Jahr</div></div>`)[0];
+                popup_54cdcaacef4ac34a54faacf46b787008.setContent(html_1755d86835a7f9190c533e20b774cacb);
+            
+        
+
+        marker_e549e22f0f222e85326a25c525907ef2.bindPopup(popup_54cdcaacef4ac34a54faacf46b787008)
+        ;
+
+        
+    
+    
+            marker_e549e22f0f222e85326a25c525907ef2.bindTooltip(
+                `<div>
+                     ⚓ Oslo (NO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e549e22f0f222e85326a25c525907ef2.setIcon(div_icon_a0b65c28851b0043f2a8320ec0384f2b);
+            
+    
+            var marker_1b2681beb1879898c7064811bdaff20c = L.marker(
+                [45.46, 9.19],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_e98eac5cffb4b31e54ce08b71f13e8c6 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_97e68d16fb570a1bb9aec9c89cbf7db9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4d2d385ff897e0778265bb13ca9c581a = $(`<div id="html_4d2d385ff897e0778265bb13ca9c581a" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Mailand</b><br>         🌍 Land: IT<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 1.4 Mio<br>         📦 Güter In: 16.20 Mio t/Jahr<br>         📤 Güter Out: 15.50 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 47.55 Mio t/Jahr</div></div>`)[0];
+                popup_97e68d16fb570a1bb9aec9c89cbf7db9.setContent(html_4d2d385ff897e0778265bb13ca9c581a);
+            
+        
+
+        marker_1b2681beb1879898c7064811bdaff20c.bindPopup(popup_97e68d16fb570a1bb9aec9c89cbf7db9)
+        ;
+
+        
+    
+    
+            marker_1b2681beb1879898c7064811bdaff20c.bindTooltip(
+                `<div>
+                     ✈️ Mailand (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b2681beb1879898c7064811bdaff20c.setIcon(div_icon_e98eac5cffb4b31e54ce08b71f13e8c6);
+            
+    
+            var marker_c9c7a2123effcdb84f926d3aed65051c = L.marker(
+                [41.9, 12.5],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_4a828a1f637901601bba1c5772e50b72 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_da32056b786278b895e313fd21a78d80 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_502a6dec64d3e7979668956339dcf81a = $(`<div id="html_502a6dec64d3e7979668956339dcf81a" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Rom</b><br>         🌍 Land: IT<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: ≈ 2.8 Mio<br>         📦 Güter In: 20.30 Mio t/Jahr<br>         📤 Güter Out: 19.90 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 60.30 Mio t/Jahr</div></div>`)[0];
+                popup_da32056b786278b895e313fd21a78d80.setContent(html_502a6dec64d3e7979668956339dcf81a);
+            
+        
+
+        marker_c9c7a2123effcdb84f926d3aed65051c.bindPopup(popup_da32056b786278b895e313fd21a78d80)
+        ;
+
+        
+    
+    
+            marker_c9c7a2123effcdb84f926d3aed65051c.bindTooltip(
+                `<div>
+                     ✈️ Rom (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9c7a2123effcdb84f926d3aed65051c.setIcon(div_icon_4a828a1f637901601bba1c5772e50b72);
+            
+    
+            var marker_3a4ba66d3f55b7132d6fe66824bce48d = L.marker(
+                [45.07, 7.69],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_247d676745013e4d27fe1aa50f39454d = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \ud83c\udfd9\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_ab5e9014331175f570fbed6c3498fa71 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e40e183ff45296e5dd919eec32a86083 = $(`<div id="html_e40e183ff45296e5dd919eec32a86083" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>🏙️ Turin</b><br>         🌍 Land: IT<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 870.000<br>         📦 Güter In: 11.40 Mio t/Jahr<br>         📤 Güter Out: 10.70 Mio t/Jahr     </div></div>`)[0];
+                popup_ab5e9014331175f570fbed6c3498fa71.setContent(html_e40e183ff45296e5dd919eec32a86083);
+            
+        
+
+        marker_3a4ba66d3f55b7132d6fe66824bce48d.bindPopup(popup_ab5e9014331175f570fbed6c3498fa71)
+        ;
+
+        
+    
+    
+            marker_3a4ba66d3f55b7132d6fe66824bce48d.bindTooltip(
+                `<div>
+                     🏙️ Turin (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a4ba66d3f55b7132d6fe66824bce48d.setIcon(div_icon_247d676745013e4d27fe1aa50f39454d);
+            
+    
+            var marker_38fc28cd9c9d9b6ecdfa4469a71ee248 = L.marker(
+                [45.44, 12.33],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_dc923f1b064803e6c97c2c48cfdc9187 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2693\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_da63c285567da76d4d5aac0bb0e36b14 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c8d9a138b36dce1f5fdb1d3a7fa8fd03 = $(`<div id="html_c8d9a138b36dce1f5fdb1d3a7fa8fd03" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>⚓ Venedig</b><br>         🌍 Land: IT<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 250.000<br>         📦 Güter In: 8.80 Mio t/Jahr<br>         📤 Güter Out: 7.90 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 21.71 Mio t/Jahr</div></div>`)[0];
+                popup_da63c285567da76d4d5aac0bb0e36b14.setContent(html_c8d9a138b36dce1f5fdb1d3a7fa8fd03);
+            
+        
+
+        marker_38fc28cd9c9d9b6ecdfa4469a71ee248.bindPopup(popup_da63c285567da76d4d5aac0bb0e36b14)
+        ;
+
+        
+    
+    
+            marker_38fc28cd9c9d9b6ecdfa4469a71ee248.bindTooltip(
+                `<div>
+                     ⚓ Venedig (IT)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_38fc28cd9c9d9b6ecdfa4469a71ee248.setIcon(div_icon_dc923f1b064803e6c97c2c48cfdc9187);
+            
+    
+            var marker_6df5c7c96a878ed563567af4ffcf841c = L.marker(
+                [43.29, 5.37],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_62ea6ec18bbaca9b4247f06501bf1cda = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2693\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_36aaecfccd767d663027e16291080a1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_392482dbe0f0af0dfd45f9e0886dbdc3 = $(`<div id="html_392482dbe0f0af0dfd45f9e0886dbdc3" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>⚓ Marseille</b><br>         🌍 Land: FR<br>         🏙️ Typ: Hafen<br>         👥 Einwohner: 870.000<br>         📦 Güter In: 17.50 Mio t/Jahr<br>         📤 Güter Out: 16.30 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 43.94 Mio t/Jahr</div></div>`)[0];
+                popup_36aaecfccd767d663027e16291080a1a.setContent(html_392482dbe0f0af0dfd45f9e0886dbdc3);
+            
+        
+
+        marker_6df5c7c96a878ed563567af4ffcf841c.bindPopup(popup_36aaecfccd767d663027e16291080a1a)
+        ;
+
+        
+    
+    
+            marker_6df5c7c96a878ed563567af4ffcf841c.bindTooltip(
+                `<div>
+                     ⚓ Marseille (FR)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6df5c7c96a878ed563567af4ffcf841c.setIcon(div_icon_62ea6ec18bbaca9b4247f06501bf1cda);
+            
+    
+            var marker_f9dc5b826edcae6e14c6ec6b25d7748a = L.marker(
+                [46.2, 6.15],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_29a43e56cfbfba639b57a15921e7fe53 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \u2708\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_f8d3d3a619c51f8eef395847ee03161a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_81a9b4ca1eaabdcfceb271228e645e61 = $(`<div id="html_81a9b4ca1eaabdcfceb271228e645e61" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>✈️ Genf</b><br>         🌍 Land: CH<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 200.000<br>         📦 Güter In: 4.90 Mio t/Jahr<br>         📤 Güter Out: 4.30 Mio t/Jahr     <br>⚙️ Max. Kapazität (geschätzt): 13.80 Mio t/Jahr</div></div>`)[0];
+                popup_f8d3d3a619c51f8eef395847ee03161a.setContent(html_81a9b4ca1eaabdcfceb271228e645e61);
+            
+        
+
+        marker_f9dc5b826edcae6e14c6ec6b25d7748a.bindPopup(popup_f8d3d3a619c51f8eef395847ee03161a)
+        ;
+
+        
+    
+    
+            marker_f9dc5b826edcae6e14c6ec6b25d7748a.bindTooltip(
+                `<div>
+                     ✈️ Genf (CH)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f9dc5b826edcae6e14c6ec6b25d7748a.setIcon(div_icon_29a43e56cfbfba639b57a15921e7fe53);
+            
+    
+            var marker_bacb7ab50b0f0c82001a2ae31e203c32 = L.marker(
+                [51.22, 6.77],
+                {
+}
+            ).addTo(map_b35fe6a56dc06c6be9472c5210fb10d6);
+        
+    
+            var div_icon_2fd80a127bf2c917cff964d79e992c06 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"\n                font-size:22px;\n                text-align:center;\n                transform: translate(-50%, -50%);\n                line-height:22px;\"\u003e\n                \ud83c\udfd9\ufe0f\n            \u003c/div\u003e\n        ",
+  "className": "empty",
+});
+        
+    
+        var popup_c3b8a04e2b2ae53e6ead91d3049c7aff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_49e9bd970853be431da5c0acbff07d6e = $(`<div id="html_49e9bd970853be431da5c0acbff07d6e" style="width: 100.0%; height: 100.0%;">     <div style="font-size:14px">         <b>🏙️ Düsseldorf</b><br>         🌍 Land: DE<br>         🏙️ Typ: Stadt<br>         👥 Einwohner: 620.000<br>         📦 Güter In: 7.70 Mio t/Jahr<br>         📤 Güter Out: 7.00 Mio t/Jahr     </div></div>`)[0];
+                popup_c3b8a04e2b2ae53e6ead91d3049c7aff.setContent(html_49e9bd970853be431da5c0acbff07d6e);
+            
+        
+
+        marker_bacb7ab50b0f0c82001a2ae31e203c32.bindPopup(popup_c3b8a04e2b2ae53e6ead91d3049c7aff)
+        ;
+
+        
+    
+    
+            marker_bacb7ab50b0f0c82001a2ae31e203c32.bindTooltip(
+                `<div>
+                     🏙️ Düsseldorf (DE)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bacb7ab50b0f0c82001a2ae31e203c32.setIcon(div_icon_2fd80a127bf2c917cff964d79e992c06);
+            
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>TEN-T Flow Simulation</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div>
+            <h2>TEN-T Netzwerk</h2>
+            <h1>Dynamische<br/>Flusssimulation</h1>
+
+            <div class="badge">
+                <div class="badge-dot"></div>
+                Realtime Güterströme · v2.0
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="controls-row">
+                <button class="btn" id="btn-toggle">▶ Start</button>
+                <button class="btn secondary" id="btn-reset">🔁 Reset</button>
+            </div>
+
+            <div class="slider-wrap">
+                <div class="slider-label">
+                    <span>Flow-Menge</span>
+                    <strong id="flow-value">100%</strong>
+                </div>
+                <input id="flow-slider" type="range" min="30" max="250" value="100" step="5" />
+            </div>
+
+            <div class="hint">
+                💡 Tipp: Ziehen = Pan • Mausrad/Pinch = Zoom • Klick auf blaue Kante = Sperren/Entsperren
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-row">
+                <span>Hauptroute</span>
+                <div class="legend-dot"></div>
+            </div>
+            <div class="legend-row">
+                <span>Alternative Route (gold)</span>
+                <div class="legend-dot alt"></div>
+            </div>
+            <div class="legend-row">
+                <span>Flow-Partikel</span>
+                <div class="legend-dot particle"></div>
+            </div>
+        </div>
+
+        <div class="stats" id="stats">
+            <div><strong>Gesamtvolumen:</strong> –</div>
+            <div><strong>Aktive Kanten:</strong> –</div>
+            <div><strong>Partikel:</strong> –</div>
+            <div><strong>Alternativ genutzt:</strong> –</div>
+        </div>
+
+        <div class="footer-note">
+            Design by <strong>Yassine El Ghissassi</strong>
+        </div>
+    </aside>
+
+    <main class="canvas-container">
+        <div id="map"></div>
+        <canvas id="network"></canvas>
+        <div class="watermark">TEN-T · FLOW SIM</div>
+        <div class="tooltip hidden" id="tooltip"></div>
+    </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="simulation.js"></script>
+</body>
+</html>

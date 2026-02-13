@@ -1,0 +1,784 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Hamburg",
+      "land": "DE",
+      "typ": "Hafen",
+      "lat": 53.55,
+      "lon": 10.0,
+      "einwohner": 1800000.0,
+      "gueter_in": 15.2,
+      "gueter_out": 13.3
+    },
+    {
+      "id": 2,
+      "name": "Berlin",
+      "land": "DE",
+      "typ": "Stadt",
+      "lat": 52.52,
+      "lon": 13.4,
+      "einwohner": 3600000.0,
+      "gueter_in": 18.1,
+      "gueter_out": 17.0
+    },
+    {
+      "id": 3,
+      "name": "München",
+      "land": "DE",
+      "typ": "Stadt",
+      "lat": 48.14,
+      "lon": 11.58,
+      "einwohner": 1600000.0,
+      "gueter_in": 12.5,
+      "gueter_out": 11.2
+    },
+    {
+      "id": 4,
+      "name": "Köln",
+      "land": "DE",
+      "typ": "Stadt",
+      "lat": 50.94,
+      "lon": 6.96,
+      "einwohner": 1080000.0,
+      "gueter_in": 9.5,
+      "gueter_out": 8.2
+    },
+    {
+      "id": 5,
+      "name": "Frankfurt",
+      "land": "DE",
+      "typ": "Flughafen",
+      "lat": 50.11,
+      "lon": 8.68,
+      "einwohner": 750000.0,
+      "gueter_in": 20.0,
+      "gueter_out": 19.0
+    },
+    {
+      "id": 6,
+      "name": "Bremen",
+      "land": "DE",
+      "typ": "Hafen",
+      "lat": 53.08,
+      "lon": 8.8,
+      "einwohner": 680000.0,
+      "gueter_in": 8.0,
+      "gueter_out": 7.0
+    },
+    {
+      "id": 7,
+      "name": "Rotterdam",
+      "land": "NL",
+      "typ": "Hafen",
+      "lat": 51.92,
+      "lon": 4.48,
+      "einwohner": 650000.0,
+      "gueter_in": 25.0,
+      "gueter_out": 23.0
+    },
+    {
+      "id": 8,
+      "name": "Amsterdam",
+      "land": "NL",
+      "typ": "Stadt",
+      "lat": 52.37,
+      "lon": 4.9,
+      "einwohner": 870000.0,
+      "gueter_in": 10.5,
+      "gueter_out": 9.8
+    },
+    {
+      "id": 9,
+      "name": "Eindhoven",
+      "land": "NL",
+      "typ": "Stadt",
+      "lat": 51.44,
+      "lon": 5.47,
+      "einwohner": 240000.0,
+      "gueter_in": 7.1,
+      "gueter_out": 6.3
+    },
+    {
+      "id": 10,
+      "name": "Antwerpen",
+      "land": "BE",
+      "typ": "Hafen",
+      "lat": 51.22,
+      "lon": 4.4,
+      "einwohner": 520000.0,
+      "gueter_in": 18.3,
+      "gueter_out": 17.1
+    },
+    {
+      "id": 11,
+      "name": "Brüssel",
+      "land": "BE",
+      "typ": "Stadt",
+      "lat": 50.85,
+      "lon": 4.35,
+      "einwohner": 1800000.0,
+      "gueter_in": 11.0,
+      "gueter_out": 10.0
+    },
+    {
+      "id": 12,
+      "name": "Paris",
+      "land": "FR",
+      "typ": "Stadt",
+      "lat": 48.86,
+      "lon": 2.35,
+      "einwohner": 2100000.0,
+      "gueter_in": 22.0,
+      "gueter_out": 21.0
+    },
+    {
+      "id": 13,
+      "name": "Lille",
+      "land": "FR",
+      "typ": "Stadt",
+      "lat": 50.63,
+      "lon": 3.06,
+      "einwohner": 230000.0,
+      "gueter_in": 6.2,
+      "gueter_out": 5.4
+    },
+    {
+      "id": 14,
+      "name": "Strasbourg",
+      "land": "FR",
+      "typ": "Stadt",
+      "lat": 48.58,
+      "lon": 7.75,
+      "einwohner": 280000.0,
+      "gueter_in": 6.8,
+      "gueter_out": 6.0
+    },
+    {
+      "id": 15,
+      "name": "Zürich",
+      "land": "CH",
+      "typ": "Stadt",
+      "lat": 47.37,
+      "lon": 8.54,
+      "einwohner": 400000.0,
+      "gueter_in": 7.5,
+      "gueter_out": 6.8
+    },
+    {
+      "id": 16,
+      "name": "Basel",
+      "land": "CH",
+      "typ": "Hafen",
+      "lat": 47.56,
+      "lon": 7.59,
+      "einwohner": 170000.0,
+      "gueter_in": 5.2,
+      "gueter_out": 4.6
+    },
+    {
+      "id": 17,
+      "name": "Wien",
+      "land": "AT",
+      "typ": "Stadt",
+      "lat": 48.21,
+      "lon": 16.37,
+      "einwohner": 1900000.0,
+      "gueter_in": 14.3,
+      "gueter_out": 13.5
+    },
+    {
+      "id": 18,
+      "name": "Linz",
+      "land": "AT",
+      "typ": "Stadt",
+      "lat": 48.31,
+      "lon": 14.29,
+      "einwohner": 200000.0,
+      "gueter_in": 4.8,
+      "gueter_out": 4.1
+    },
+    {
+      "id": 19,
+      "name": "Graz",
+      "land": "AT",
+      "typ": "Stadt",
+      "lat": 47.07,
+      "lon": 15.44,
+      "einwohner": 300000.0,
+      "gueter_in": 5.3,
+      "gueter_out": 4.7
+    },
+    {
+      "id": 20,
+      "name": "Luxemburg",
+      "land": "LU",
+      "typ": "Stadt",
+      "lat": 49.61,
+      "lon": 6.13,
+      "einwohner": 125000.0,
+      "gueter_in": 3.5,
+      "gueter_out": 3.2
+    },
+    {
+      "id": 21,
+      "name": "Prag",
+      "land": "CZ",
+      "typ": "Stadt",
+      "lat": 50.08,
+      "lon": 14.44,
+      "einwohner": 1300000.0,
+      "gueter_in": 8.9,
+      "gueter_out": 8.0
+    },
+    {
+      "id": 22,
+      "name": "Kopenhagen",
+      "land": "DK",
+      "typ": "Stadt",
+      "lat": 55.68,
+      "lon": 12.57,
+      "einwohner": 800000.0,
+      "gueter_in": 7.1,
+      "gueter_out": 6.9
+    },
+    {
+      "id": 23,
+      "name": "Oslo",
+      "land": "NO",
+      "typ": "Hafen",
+      "lat": 59.91,
+      "lon": 10.75,
+      "einwohner": 700000.0,
+      "gueter_in": 4.5,
+      "gueter_out": 4.1
+    },
+    {
+      "id": 24,
+      "name": "Mailand",
+      "land": "IT",
+      "typ": "Stadt",
+      "lat": 45.46,
+      "lon": 9.19,
+      "einwohner": 1400000.0,
+      "gueter_in": 16.2,
+      "gueter_out": 15.5
+    },
+    {
+      "id": 25,
+      "name": "Rom",
+      "land": "IT",
+      "typ": "Stadt",
+      "lat": 41.9,
+      "lon": 12.5,
+      "einwohner": 2800000.0,
+      "gueter_in": 20.3,
+      "gueter_out": 19.9
+    },
+    {
+      "id": 26,
+      "name": "Turin",
+      "land": "IT",
+      "typ": "Stadt",
+      "lat": 45.07,
+      "lon": 7.69,
+      "einwohner": 870000.0,
+      "gueter_in": 11.4,
+      "gueter_out": 10.7
+    },
+    {
+      "id": 27,
+      "name": "Venedig",
+      "land": "IT",
+      "typ": "Hafen",
+      "lat": 45.44,
+      "lon": 12.33,
+      "einwohner": 250000.0,
+      "gueter_in": 8.8,
+      "gueter_out": 7.9
+    },
+    {
+      "id": 28,
+      "name": "Marseille",
+      "land": "FR",
+      "typ": "Hafen",
+      "lat": 43.29,
+      "lon": 5.37,
+      "einwohner": 870000.0,
+      "gueter_in": 17.5,
+      "gueter_out": 16.3
+    },
+    {
+      "id": 29,
+      "name": "Genf",
+      "land": "CH",
+      "typ": "Stadt",
+      "lat": 46.2,
+      "lon": 6.15,
+      "einwohner": 200000.0,
+      "gueter_in": 4.9,
+      "gueter_out": 4.3
+    },
+    {
+      "id": 30,
+      "name": "Düsseldorf",
+      "land": "DE",
+      "typ": "Stadt",
+      "lat": 51.22,
+      "lon": 6.77,
+      "einwohner": 620000.0,
+      "gueter_in": 7.7,
+      "gueter_out": 7.0
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "von_id": 1,
+      "zu_id": 27,
+      "typ": "rail",
+      "distanz_km": 936.6256034296733,
+      "fracht_schaetzung": 916.5079601320008
+    },
+    {
+      "id": 2,
+      "von_id": 1,
+      "zu_id": 22,
+      "typ": "rail",
+      "distanz_km": 370.5106176616267,
+      "fracht_schaetzung": 464.75423886740964
+    },
+    {
+      "id": 3,
+      "von_id": 2,
+      "zu_id": 11,
+      "typ": "air",
+      "distanz_km": 1021.5100290256578,
+      "fracht_schaetzung": 1140.3794122344625
+    },
+    {
+      "id": 4,
+      "von_id": 3,
+      "zu_id": 20,
+      "typ": "road",
+      "distanz_km": 626.5691912311042,
+      "fracht_schaetzung": 572.2914237870262
+    },
+    {
+      "id": 5,
+      "von_id": 3,
+      "zu_id": 28,
+      "typ": "rail",
+      "distanz_km": 874.625061726452,
+      "fracht_schaetzung": 1131.4485244904747
+    },
+    {
+      "id": 6,
+      "von_id": 4,
+      "zu_id": 21,
+      "typ": "rail",
+      "distanz_km": 835.7496574931993,
+      "fracht_schaetzung": 731.855365076549
+    },
+    {
+      "id": 7,
+      "von_id": 4,
+      "zu_id": 26,
+      "typ": "road",
+      "distanz_km": 656.5891605867398,
+      "fracht_schaetzung": 825.5870828951023
+    },
+    {
+      "id": 8,
+      "von_id": 5,
+      "zu_id": 3,
+      "typ": "air",
+      "distanz_km": 389.1480166980168,
+      "fracht_schaetzung": 374.43063540995064
+    },
+    {
+      "id": 9,
+      "von_id": 5,
+      "zu_id": 15,
+      "typ": "water",
+      "distanz_km": 304.5367485214225,
+      "fracht_schaetzung": 339.5857122854901
+    },
+    {
+      "id": 10,
+      "von_id": 6,
+      "zu_id": 28,
+      "typ": "rail",
+      "distanz_km": 1151.4558128734247,
+      "fracht_schaetzung": 1000.6627688959014
+    },
+    {
+      "id": 11,
+      "von_id": 6,
+      "zu_id": 15,
+      "typ": "rail",
+      "distanz_km": 634.4667175668084,
+      "fracht_schaetzung": 510.5661990839846
+    },
+    {
+      "id": 12,
+      "von_id": 7,
+      "zu_id": 20,
+      "typ": "road",
+      "distanz_km": 315.10317453177163,
+      "fracht_schaetzung": 304.78732270635805
+    },
+    {
+      "id": 13,
+      "von_id": 7,
+      "zu_id": 10,
+      "typ": "air",
+      "distanz_km": 78.20578239491022,
+      "fracht_schaetzung": 71.13936399136503
+    },
+    {
+      "id": 14,
+      "von_id": 8,
+      "zu_id": 14,
+      "typ": "water",
+      "distanz_km": 526.3624213410375,
+      "fracht_schaetzung": 539.7884566097757
+    },
+    {
+      "id": 15,
+      "von_id": 9,
+      "zu_id": 21,
+      "typ": "air",
+      "distanz_km": 1007.0489911121502,
+      "fracht_schaetzung": 1113.6080567947859
+    },
+    {
+      "id": 16,
+      "von_id": 9,
+      "zu_id": 13,
+      "typ": "water",
+      "distanz_km": 282.2151806689355,
+      "fracht_schaetzung": 231.613897230941
+    },
+    {
+      "id": 17,
+      "von_id": 10,
+      "zu_id": 7,
+      "typ": "water",
+      "distanz_km": 78.20578239491022,
+      "fracht_schaetzung": 83.40046258769783
+    },
+    {
+      "id": 18,
+      "von_id": 10,
+      "zu_id": 21,
+      "typ": "rail",
+      "distanz_km": 1121.6010365544423,
+      "fracht_schaetzung": 1450.637750673256
+    },
+    {
+      "id": 19,
+      "von_id": 11,
+      "zu_id": 12,
+      "typ": "water",
+      "distanz_km": 313.1715058877484,
+      "fracht_schaetzung": 293.3474509882344
+    },
+    {
+      "id": 20,
+      "von_id": 11,
+      "zu_id": 1,
+      "typ": "road",
+      "distanz_km": 695.0807237292656,
+      "fracht_schaetzung": 706.6691602781149
+    },
+    {
+      "id": 21,
+      "von_id": 12,
+      "zu_id": 17,
+      "typ": "road",
+      "distanz_km": 1557.8916236054422,
+      "fracht_schaetzung": 1548.7826287013334
+    },
+    {
+      "id": 22,
+      "von_id": 12,
+      "zu_id": 17,
+      "typ": "road",
+      "distanz_km": 1557.8916236054422,
+      "fracht_schaetzung": 1965.5896737486416
+    },
+    {
+      "id": 23,
+      "von_id": 13,
+      "zu_id": 11,
+      "typ": "air",
+      "distanz_km": 145.2574008441566,
+      "fracht_schaetzung": 149.2663432739224
+    },
+    {
+      "id": 24,
+      "von_id": 13,
+      "zu_id": 21,
+      "typ": "water",
+      "distanz_km": 1264.654425090111,
+      "fracht_schaetzung": 1012.097936562131
+    },
+    {
+      "id": 25,
+      "von_id": 14,
+      "zu_id": 20,
+      "typ": "air",
+      "distanz_km": 213.08820075264617,
+      "fracht_schaetzung": 195.47694925821293
+    },
+    {
+      "id": 26,
+      "von_id": 14,
+      "zu_id": 12,
+      "typ": "water",
+      "distanz_km": 600.2052368981798,
+      "fracht_schaetzung": 559.6701684580878
+    },
+    {
+      "id": 27,
+      "von_id": 15,
+      "zu_id": 8,
+      "typ": "road",
+      "distanz_km": 686.4934971287054,
+      "fracht_schaetzung": 765.3356821794949
+    },
+    {
+      "id": 28,
+      "von_id": 15,
+      "zu_id": 2,
+      "typ": "air",
+      "distanz_km": 786.0030623986149,
+      "fracht_schaetzung": 889.3366170156681
+    },
+    {
+      "id": 29,
+      "von_id": 16,
+      "zu_id": 19,
+      "typ": "air",
+      "distanz_km": 873.045871990699,
+      "fracht_schaetzung": 795.5112285008278
+    },
+    {
+      "id": 30,
+      "von_id": 16,
+      "zu_id": 1,
+      "typ": "road",
+      "distanz_km": 716.6870392298156,
+      "fracht_schaetzung": 891.1727599823723
+    },
+    {
+      "id": 31,
+      "von_id": 17,
+      "zu_id": 12,
+      "typ": "road",
+      "distanz_km": 1557.8916236054422,
+      "fracht_schaetzung": 1277.085850747997
+    },
+    {
+      "id": 32,
+      "von_id": 17,
+      "zu_id": 9,
+      "typ": "water",
+      "distanz_km": 1261.9040260257514,
+      "fracht_schaetzung": 1182.7146835029052
+    },
+    {
+      "id": 33,
+      "von_id": 18,
+      "zu_id": 15,
+      "typ": "rail",
+      "distanz_km": 646.7224273983392,
+      "fracht_schaetzung": 687.5708905386397
+    },
+    {
+      "id": 34,
+      "von_id": 18,
+      "zu_id": 29,
+      "typ": "air",
+      "distanz_km": 933.4017654257997,
+      "fracht_schaetzung": 1160.6385572299057
+    },
+    {
+      "id": 35,
+      "von_id": 19,
+      "zu_id": 2,
+      "typ": "water",
+      "distanz_km": 645.9408456662269,
+      "fracht_schaetzung": 539.0527635737928
+    },
+    {
+      "id": 36,
+      "von_id": 19,
+      "zu_id": 20,
+      "typ": "air",
+      "distanz_km": 1071.1799063182616,
+      "fracht_schaetzung": 1122.1315122989033
+    },
+    {
+      "id": 37,
+      "von_id": 20,
+      "zu_id": 17,
+      "typ": "air",
+      "distanz_km": 1147.2138639329637,
+      "fracht_schaetzung": 1150.1614839157216
+    },
+    {
+      "id": 38,
+      "von_id": 20,
+      "zu_id": 14,
+      "typ": "rail",
+      "distanz_km": 213.08820075264617,
+      "fracht_schaetzung": 221.75733566082113
+    },
+    {
+      "id": 39,
+      "von_id": 21,
+      "zu_id": 14,
+      "typ": "road",
+      "distanz_km": 761.0270416351839,
+      "fracht_schaetzung": 889.9660424775069
+    },
+    {
+      "id": 40,
+      "von_id": 21,
+      "zu_id": 7,
+      "typ": "air",
+      "distanz_km": 1124.2672685798516,
+      "fracht_schaetzung": 1213.9595751608833
+    },
+    {
+      "id": 41,
+      "von_id": 22,
+      "zu_id": 3,
+      "typ": "rail",
+      "distanz_km": 844.1234362935315,
+      "fracht_schaetzung": 808.1398905436871
+    },
+    {
+      "id": 42,
+      "von_id": 22,
+      "zu_id": 25,
+      "typ": "air",
+      "distanz_km": 1529.5997349960546,
+      "fracht_schaetzung": 1986.5191431068588
+    },
+    {
+      "id": 43,
+      "von_id": 23,
+      "zu_id": 5,
+      "typ": "road",
+      "distanz_km": 1111.8017327293567,
+      "fracht_schaetzung": 1388.202272139206
+    },
+    {
+      "id": 44,
+      "von_id": 23,
+      "zu_id": 1,
+      "typ": "road",
+      "distanz_km": 710.8516611079979,
+      "fracht_schaetzung": 650.2380521791531
+    },
+    {
+      "id": 45,
+      "von_id": 24,
+      "zu_id": 27,
+      "typ": "water",
+      "distanz_km": 348.5470699919884,
+      "fracht_schaetzung": 414.97880302578477
+    },
+    {
+      "id": 46,
+      "von_id": 24,
+      "zu_id": 21,
+      "typ": "air",
+      "distanz_km": 776.2614990452636,
+      "fracht_schaetzung": 836.5549564585738
+    },
+    {
+      "id": 47,
+      "von_id": 25,
+      "zu_id": 13,
+      "typ": "water",
+      "distanz_km": 1427.2308175274247,
+      "fracht_schaetzung": 1540.1783482910403
+    },
+    {
+      "id": 48,
+      "von_id": 26,
+      "zu_id": 24,
+      "typ": "road",
+      "distanz_km": 172.03567682315193,
+      "fracht_schaetzung": 206.4173925571876
+    },
+    {
+      "id": 49,
+      "von_id": 26,
+      "zu_id": 22,
+      "typ": "road",
+      "distanz_km": 1296.3094023033234,
+      "fracht_schaetzung": 1655.2136931296368
+    },
+    {
+      "id": 50,
+      "von_id": 27,
+      "zu_id": 19,
+      "typ": "road",
+      "distanz_km": 389.7507010898121,
+      "fracht_schaetzung": 329.7412536526203
+    },
+    {
+      "id": 51,
+      "von_id": 28,
+      "zu_id": 20,
+      "typ": "road",
+      "distanz_km": 706.5740725500759,
+      "fracht_schaetzung": 661.6984953418835
+    },
+    {
+      "id": 52,
+      "von_id": 28,
+      "zu_id": 7,
+      "typ": "water",
+      "distanz_km": 963.0105653626032,
+      "fracht_schaetzung": 891.2443348320556
+    },
+    {
+      "id": 53,
+      "von_id": 29,
+      "zu_id": 27,
+      "typ": "water",
+      "distanz_km": 691.1477193769796,
+      "fracht_schaetzung": 859.542817137889
+    },
+    {
+      "id": 54,
+      "von_id": 29,
+      "zu_id": 23,
+      "typ": "water",
+      "distanz_km": 1605.184735817033,
+      "fracht_schaetzung": 1871.1378541848746
+    },
+    {
+      "id": 55,
+      "von_id": 30,
+      "zu_id": 29,
+      "typ": "water",
+      "distanz_km": 561.4537565997751,
+      "fracht_schaetzung": 624.7624463508455
+    },
+    {
+      "id": 56,
+      "von_id": 30,
+      "zu_id": 13,
+      "typ": "rail",
+      "distanz_km": 416.98491123780474,
+      "fracht_schaetzung": 335.2310397216178
+    }
+  ]
+}
